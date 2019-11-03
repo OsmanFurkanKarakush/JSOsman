@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="https://maeyler.github.io/305/images/icon192.png">
+    <title>Student Database </title>
+
+  <style>
+    .link {
+        color: blue;
+        cursor: pointer;
+        font-style: italic;
+    }
+    .course {
+        visibility: hidden;
+        font: 10px arial, sans-serif;
+        color: white;
+        background: blue;
+        cursor: text;
+        padding: 6px;
+        position: absolute;
+        height: 90px;
+        overflow-y: auto;
+    }
+    .link:hover .course { 
+        visibility: visible; 
+    }
+  </style>
+</head>
+
+<body>
+
+<h2 id="title">Courses</h2>
+
+
+
+<p>Courses: 
+<input type="string" onchange="getRemoteData(value)">
+</p>
+<p>Result:</p>
+<div id="result"></div>
+<b>Sample code</b>
+<pre id="sample">
+    async function getRemoteData(param){
+    let array= []
+    let rawData2 = await fetch("https://maeyler.github.io/JS/data/Courses.txt");
+      let text2 = await rawData2.text();
+      let newArray = text2.split("\n");
+      for (let line2 of newArray) {
+        let veri2 = line2.split("\t");
+        let course = new Course(veri2[0], veri2[1], veri2[2], veri2.slice(3));
+        array.push(course);
+        
+}
+
+for (let kurs of array ){
+            if(kurs.kod==param){
+                result.innerText = kurs
+            }
+        }
+
+}
+<hr>
+
+<script>
+"use strict";
+
+
+    class Course {
+  constructor(kod, saat, tarih, sinif) {
+    this.kod = kod;
+    this.saat = saat;
+    this.tarih = tarih;
+    this.sinif = sinif;
+  }
+  toString() {
+    return (
+      "Adı: " +
+      this.kod + "\n" +
+      " Saat: " +
+      this.saat + "\n" +
+      " Tarih: " +
+      this.tarih + "\n" +
+      " Sınıflar :" +
+      this.sinif + "\n" +
+      "-------------------------------------------------------" + "\n"
+    );
+  }
+}
+
+async function getRemoteData(param){
+    let array= []
+    let rawData2 = await fetch("https://maeyler.github.io/JS/data/Courses.txt");
+      let text2 = await rawData2.text();
+      let newArray = text2.split("\n");
+      for (let line2 of newArray) {
+        let veri2 = line2.split("\t");
+        let course = new Course(veri2[0], veri2[1], veri2[2], veri2.slice(3));
+        array.push(course);
+        
+}
+
+for (let kurs of array ){
+            if(kurs.kod==param){
+                result.innerText = kurs
+            }
+        }
+
+}
+</script>
+
+
+
+</body></html>
