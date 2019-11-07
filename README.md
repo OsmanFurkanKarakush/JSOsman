@@ -9,4 +9,5 @@ For Lecture
 
 ![CW3-Analyze](./HW3.png)
 [CW4-Courses Database](./CW4.html)
-[CW4-Courses Database](./CW6.html)
+
+[CW6 File Checking](./CW6.html)
