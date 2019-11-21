@@ -11,3 +11,4 @@ For Lecture
 [CW4-Courses Database](./CW4.html)
 
 [CW6 File Checking](./CW6.html)
+[CW6 Time Comparison]
