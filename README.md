@@ -13,5 +13,6 @@ For Lecture
 [CW6 File Checking](./CW6.html)
 
 [CW7 Time Comparison](./CW7.html)
-[CW7 Make Table](./CW8.html)
+
+[CW8 Make Table](./CW8.html)
 [CW9 Github Users](./CW9.html)
