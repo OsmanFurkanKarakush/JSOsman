@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" sizes="192x192" href="/advancedProgramming/images/icon.png">
+    <script src="script.js"></script>
+    <title>DOM</title>
+</head>
+<style>
+    table {
+        width:400px;
+    }
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 10px;
+        text-align: left;
+    }
+    table.t01 tbody:nth-child(even) {
+        background-color: #eee;
+    }
+    table.t01 tbody:nth-child(odd) {
+        background-color: #fff;
+    }
+    table.t01 tbody tr th {
+        background-color: #d2d2d2;
+    }
+    table.t01 tbody:first-child tr th{
+        background-color: #fff!important;
+        color: #ffffff!important;
+    }
+</style>
+<body>
+    <h2 id="title">Make Table</h2>
+    <hr>
+    <h5 id="url"></h5>
+    <p>
+        <table id="tbl" class="t01">
+        </table>
+    </p>
+    <hr />
+    <script>
+        var c = new ReadJSON('https://raw.githubusercontent.com/OsmanFurkanKarakush/JSOsman/master/data.json');
+        c.readData()
+    </script>
+</body>
+</html>
