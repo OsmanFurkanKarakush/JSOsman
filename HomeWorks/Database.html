@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./Database.js"></script>
+</head>
+<body>
+    <h2 id=title></h2>
+
+<!-- <button onClick='RandomStd()'>Random</button>
+<button onClick='findBest()'>Best GPA</button>
+<button onClick='out.innerText=""'>Clear</button>
+<button onClick='NumberOfStudentsAboveGPA()'>Std Above GPA</button>
+<button onClick='CoursesTakenByStudent()'>Courses Taken by Std</button>
+<button onClick='ExamSchedule()'>Exam Schedule</button>
+<button onClick='StudentList()'>Student List</button>
+<button onClick='CourseList()'>Course List</button>
+<button onClick='NumberOfCourses()'>Number Of Courses</button> -->
+
+<button onclick="db.getRemoteData(0)">RANDOM STU</button>
+
+<p>
+    <label for="get_above_gpa">GPA</label> &nbsp
+    <input id="get_above_gpa" type="text" placeholder="GPA" onchange="db.getRemoteData(1,value)">
+</p>
+
+<p>
+    <label for="course_taken">Course Taken</label> &nbsp
+    <input id="course_taken" type="text" placeholder="Student Id" onchange="db.getRemoteData(2,value)">
+</p>
+
+<p>
+    <label for="exam_schedule">Exam Schedule</label> &nbsp
+    <input id="exam_schedule" type="text" placeholder="Student Id" onchange="db.getRemoteData(3,value)">
+</p>
+
+<p>
+    <label for="student_list">Student List</label> &nbsp
+    <input id="student_list" type="text" placeholder="Course Name" onchange="db.getRemoteData(4,value)">
+</p>
+
+<p>
+    <label for="course_list">Course List</label> &nbsp
+    <input id="course_list" type="text" placeholder="Room Name" onchange="db.getRemoteData(5,value)">
+</p>
+
+<p>
+    <label for="course_list">Num. of Courses</label> &nbsp
+    <input id="course_list" type="text" placeholder="Room Name" onchange="db.getRemoteData(6,value)">
+</p>
+
+<p>
+    <label for="course_on_date">CourseOnDate</label> &nbsp
+    <input id="course_on_date" type="text" placeholder="Date" onchange="db.getRemoteData(7,value)">
+</p>
+
+
+<p>Result:</p>
+<div id="result"></div>
+
+<hr />
+<b>Sample code</b>
+<pre id=sample>
+    async getRemoteData(methodId = -1, param = -1) {
+        if (methodId == -1) {
+          let rawData = await fetch(this.url1);
+          let text = await rawData.text();
+          let array = text.split("\n");
+          for (let line of array) {
+            let veri = line.split("\t");
+            let student = new Student(veri[0], veri[1], veri[2], veri.slice(3));
+            this.StudentMap.set(veri[0], student);
+          }
+    
+          let rawData2 = await fetch(this.url2);
+          let text2 = await rawData2.text();
+          let newArray = text2.split("\n");
+          for (let line2 of newArray) {
+            let veri2 = line2.split("\t");
+            let course = new Course(veri2[0], veri2[1], veri2[2], veri2.slice(3));
+            this.CourseMap.set(veri2[0], course);
+          }
+        }
+    
+        if (param != -1) {
+          if (methodId == 1) {
+            this.NumberOfStudentsAboveGPA(param);
+          } else if (methodId == 2) {
+            this.CoursesTakenByStudent(param);
+          } else if (methodId == 3) {
+            this.ExamSchedule(param);
+          } else if (methodId == 4) {
+            this.StudentList(param);
+          } else if (methodId == 5) {
+            this.CourseList(param);
+          } else if (methodId == 6) {
+            this.NumberOfCourses(param);
+          } else if (methodId == 7) {
+            this.CoursesInDate(param);
+          }
+        } else if (methodId == 0) {
+          this.RandomStd();
+        }
+      }
+</pre>
+<hr />
+</body>
+</html>
+

@@ -1,0 +1,10 @@
+#gameScreen{
+border: 1px solid black;
+
+}
+#middleLine{
+    border: 1px solid black;
+    left: -400;
+
+
+}

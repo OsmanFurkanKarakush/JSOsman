@@ -1,0 +1,24 @@
+body{
+    background: blue;
+}
+.anim{
+    width: 100px;
+    padding: 20px;
+    box-sizing: border-box;
+    animation-name: ;
+    animation-duration: infinity;
+}
+.parnet{
+
+    position: relative;
+    top: 0;
+    left: 0;
+
+}
+
+.arri{
+
+    position: relative;
+    right: -124px;
+    bottom: 20px;
+}

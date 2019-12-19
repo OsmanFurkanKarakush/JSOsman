@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <img id="wheel"
+        src="kisspng-color-wheel-wikipedia-encyclopedia-wheel-of-fortune-5b0cd19a6f6435.0417165015275667464563.png"
+       style="align-self: auto;;" alt="Wheel of Fortune"   height="300" width="300" >
+
+<div class="parnet" >
+    
+    <img class="arri" 
+    src="green-arrow-png-16646.png" 
+    alt="Up Arrow" height="50" width="50">
+
+</div>
+   
+    <p>
+        <button onclick="startSpin()"> start </button>
+
+    </p>
+
+
+    <script>
+        
+        function startSpin() {
+            
+           
+            document.getElementById("wheel").animate([
+                    // keyframes
+                    { transform: 'rotate(360deg)' },
+                    { transform: 'rotate(0deg)' }
+                ], {
+                    // timing options
+                    duration: 500,
+                    iterations: 5
+                });
+               setTimeout(() => {
+                  stopAtRandomPlace() 
+               }, 2500);
+
+
+        }
+
+        function stopAtRandomPlace() {
+                rng = Math.floor((Math.random()*1440) + 360);
+            rotation = (Math.round(rng));
+            console.log((rotation%360));
+            if(rotation%360>=0 & rotation%360<30)
+            document.body.style.background = "#5B2CA0"
+            else if ((rotation%360>=30 & rotation%360<60))
+            document.body.style.background = "#3737C9"
+            else if ((rotation%360>=60 & rotation%360<90))
+            document.body.style.background = "#01AAD5"
+            else if ((rotation%360>=90 & rotation%360<120))
+            document.body.style.background = "#2CA089"
+            else if ((rotation%360>=120 & rotation%360<150))
+            document.body.style.background = "#44AA00"
+            else if ((rotation%360>=150 & rotation%360<180))
+            document.body.style.background = "#A8D500"
+            else if ((rotation%360>=180 & rotation%360<210))
+            document.body.style.background = "#FFCC00"
+            else if ((rotation%360>=210 & rotation%360<240))
+            document.body.style.background = "#FF6501"
+            else if ((rotation%360>=240 & rotation%360<270))
+            document.body.style.background = "#D40000"
+            else if ((rotation%360>=270 & rotation%360<300))
+            document.body.style.background = "#FF0066"
+            else if ((rotation%360>=300 & rotation%360<330))
+            document.body.style.background = "#FF00CB"
+            else if ((rotation%360>=330 & rotation%360<360))
+            document.body.style.background = "#8800AA"
+
+            document.getElementById("wheel").style.transform = 'rotate(' + rotation + 'deg)';
+           
+        }
+
+    </script>
+
+</body>
+
+</html>

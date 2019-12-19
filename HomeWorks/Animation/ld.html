@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<style>
+#container {
+  width: 400px;
+  height: 400px;
+  position: relative;
+  background: yellow;
+}
+#animate {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  background-color: red;
+}
+#animate2 {
+  right: 0px;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  background-color: blue;
+}
+#animate3 {
+  bottom: 0px;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  background-color: pink;
+}
+#animate4 {
+  bottom: 0px;
+  right: 0px;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  background-color: yellow;
+}
+</style>
+<body>
+
+<p><button onclick="myMove()">Play!</button></p> 
+
+<div id ="container">
+  <div id ="animate"></div>
+ <div id ="animate3"></div>
+  <div id ="animate2"></div>
+   <div id ="animate4"></div>
+</div>
+
+<script>
+var t1 = { background: ["red","white", "red"] };
+var t2 = { background: ["blue","white", "blue"] };
+var t3 = { background: ["pink","white", "pink"] };
+var t4 = { background: ["yellow","white", "yellow"] };
+var rand;
+var cubeList=[animate,animate2,animate3,animate4];
+var animeList=[t1,t2,t3,t4];
+function myMove(){
+for(let i=0;i<4;i++){
+ rand=Math.floor((Math.random()*10)%4);
+ console.log(i+"-"+rand);
+ cubeList[rand].animate(animeList[rand],1000);
+}
+
+
+}
+</script>
+
+</body>
+</html>
