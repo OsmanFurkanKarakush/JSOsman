@@ -266,7 +266,6 @@ class Ball {
         this.maxSpeed = 7;
         this.xspeed = 0;
         this.yspeed = 0
-        this.friction = -0.7
         //   this.randomNumX = Math.random() * 800;
         // this.randomNumY = Math.random() * 600;
         this.position = {
@@ -317,12 +316,17 @@ class Ball {
                 vel0 = this.rotate(player.xspeed, player.yspeed, sin, cos, true),
                 vel1 = this.rotate(this.xspeed, this.yspeed, sin, cos, true),
                 XvelocityTotal = vel0.x - vel1.x;
-            vel0.x = ((player.maxSpeed - this.maxSpeed) * vel0.x + 2 * this.maxSpeed * vel1.x) / (player.maxSpeed + this.maxSpeed);
+               // console.log("totoal vel = ",XvelocityTotal);
+            vel0.x = 0//((player.maxSpeed - this.maxSpeed) * vel0.x + 2 * this.maxSpeed * vel1.x) / (player.maxSpeed + this.maxSpeed);
+            //console.log("vel0 = ",vel0.x);
+        
             vel1.x = XvelocityTotal + vel0.x;
+            //console.log("vel1.x = ",vel1.x);
             var absV = Math.abs(vel0.x) + Math.abs(vel1.x),
             overlap = (player.width-this.width) - (Math.abs(pos0.x - pos1.x));
-            pos0.x += vel0.x / absV * overlap;
+            pos0.x += (vel0.x) / absV * overlap;
             pos1.x += vel1.x / absV * overlap;
+     
             var pos0F = this.rotate(pos0.x, pos0.y, sin, cos, false),
             pos1F = this.rotate(pos1.x, pos1.y, sin, cos, false);
             this.x = player.x + pos1F.x;
@@ -335,7 +339,6 @@ class Ball {
 
             player.xspeed = vel0F.x;
             player.yspeed = vel0F.y;
-
             this.xspeed = vel1F.x;
             this.yspeed = vel1F.y;
 
@@ -405,11 +408,10 @@ class Ball {
             this.yspeed = -this.yspeed;
         }
         if (this.position.y + this.height > this.gameHeight) {
-            this.position.y = this.gameHeight - this.height;
             this.yspeed = -this.yspeed;
 
         }
-        if (this.y > (gameHeight - this.width) || this.y < this.width) {
+        /*if (this.y > (gameHeight - this.width) || this.y < this.width) {
 
             // Stop puck from getting stuck
             if (this.position.y > (gameHeight - this.width)) {
@@ -420,7 +422,7 @@ class Ball {
 
             // Reverse direction
             this.yspeed = -this.yspeed;
-        }
+        }*/
 
 
         // this.position.x = this.randomNumX
