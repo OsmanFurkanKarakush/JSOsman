@@ -49,10 +49,10 @@ class Player {
     draw(ct) {
         ct.beginPath();
 
-        ct.arc(this.position.x, this.position.y, 30, 0, 2 * Math.PI);
+        ct.arc(this.position.x, this.position.y, this.width, 0, 2 * Math.PI);
         ct.fillStyle = 'red'
         ct.fill()
-        // ct.fillRect(this.position.x,this.position.y,this.width,this.height);
+       
         ct.strokeStyle = 'red';
 
         ct.stroke();
@@ -120,10 +120,10 @@ class Player2 {
     draw(ct) {
         ct.beginPath();
 
-        ct.arc(this.position.x, this.position.y, 30, 0, 2 * Math.PI);
+        ct.arc(this.position.x, this.position.y, this.width, 0, 2 * Math.PI);
         ct.fillStyle = 'blue'
         ct.fill()
-        // ct.fillRect(this.position.x,this.position.y,this.width,this.height);
+
         ct.strokeStyle = 'blue';
 
         ct.stroke();
@@ -266,8 +266,7 @@ class Ball {
         this.maxSpeed = 7;
         this.xspeed = 0;
         this.yspeed = 0
-        //   this.randomNumX = Math.random() * 800;
-        // this.randomNumY = Math.random() * 600;
+       
         this.position = {
 
             x: gameWidth / 2,
@@ -280,10 +279,10 @@ class Ball {
     draw(ct) {
         ct.beginPath();
 
-        ct.arc(this.position.x, this.position.y, 15, 0, 2 * Math.PI);
+        ct.arc(this.position.x, this.position.y, this.width, 0, 2 * Math.PI);
         ct.fillStyle = 'brown'
         ct.fill()
-        // ct.fillRect(this.position.x,this.position.y,this.width,this.height);
+        
         ct.strokeStyle = 'brown';
 
         ct.stroke();
@@ -299,12 +298,11 @@ class Ball {
 
 
     checkCollision(player) {
-        let a = player.width+this.width ;
+        let a = player.width + this.width;
         let x = Math.abs(player.position.x - this.position.x);
         let y = Math.abs(player.position.y - this.position.y);
 
         if (a > Math.sqrt((x * x) + (y * y))) {
-            console.log("Collision");
             var angle = Math.atan2(y, x),
                 sin = Math.sin(angle),
                 cos = Math.cos(angle),
@@ -316,19 +314,18 @@ class Ball {
                 vel0 = this.rotate(player.xspeed, player.yspeed, sin, cos, true),
                 vel1 = this.rotate(this.xspeed, this.yspeed, sin, cos, true),
                 XvelocityTotal = vel0.x - vel1.x;
-               // console.log("totoal vel = ",XvelocityTotal);
             vel0.x = 0//((player.maxSpeed - this.maxSpeed) * vel0.x + 2 * this.maxSpeed * vel1.x) / (player.maxSpeed + this.maxSpeed);
-            //console.log("vel0 = ",vel0.x);
-        
+           
+
             vel1.x = XvelocityTotal + vel0.x;
-            //console.log("vel1.x = ",vel1.x);
+        
             var absV = Math.abs(vel0.x) + Math.abs(vel1.x),
-            overlap = (player.width-this.width) - (Math.abs(pos0.x - pos1.x));
+                overlap = (player.width - this.width) - (Math.abs(pos0.x - pos1.x));
             pos0.x += (vel0.x) / absV * overlap;
             pos1.x += vel1.x / absV * overlap;
-     
+
             var pos0F = this.rotate(pos0.x, pos0.y, sin, cos, false),
-            pos1F = this.rotate(pos1.x, pos1.y, sin, cos, false);
+                pos1F = this.rotate(pos1.x, pos1.y, sin, cos, false);
             this.x = player.x + pos1F.x;
             this.y = player.y + pos1F.y;
             player.x = player.x + pos0F.x;
@@ -347,7 +344,7 @@ class Ball {
 
     }
 
-    update(deltatime, player,player2) {
+    update(deltatime, player, player2) {
 
         if (!deltatime) return;
         this.position.x += this.xspeed;
@@ -360,20 +357,20 @@ class Ball {
 
         if (this.position.x - this.width <= 0 && this.position.y > 175 && this.position.y < 425) {
             count1++;
-            console.log("count1 = " + count1);
-            this.position.x= gameWidth/2;
-            this.position.y=gameHeight/2;
-            this.xspeed=0;
-            this.yspeed=0;
+           
+            this.position.x = gameWidth / 2;
+            this.position.y = gameHeight / 2;
+            this.xspeed = 0;
+            this.yspeed = 0;
             player2.position.x = gameWidth - player2.width;
-            player2.position.y =gameHeight/2;
-            player2.xspeed=0;
-            player2.yspeed=0;
+            player2.position.y = gameHeight / 2;
+            player2.xspeed = 0;
+            player2.yspeed = 0;
 
             player.position.x = 30;
-            player.position.y =gameHeight/2;
-            player.xspeed=0;
-            player.yspeed=0;
+            player.position.y = gameHeight / 2;
+            player.xspeed = 0;
+            player.yspeed = 0;
 
         }
 
@@ -386,20 +383,20 @@ class Ball {
 
         if (this.position.x + this.width >= this.gameWidth && this.position.y > 175 && this.position.y < 425) {
             count2++;
-            console.log("count2 = " + count2)
-            this.position.x= gameWidth/2;
-            this.position.y=gameHeight/2;
-            this.xspeed=0;
-            this.yspeed=0;
+           
+            this.position.x = gameWidth / 2;
+            this.position.y = gameHeight / 2;
+            this.xspeed = 0;
+            this.yspeed = 0;
             player2.position.x = gameWidth - player2.width;
-            player2.position.y =gameHeight/2;
-            player2.xspeed=0;
-            player2.yspeed=0;
+            player2.position.y = gameHeight / 2;
+            player2.xspeed = 0;
+            player2.yspeed = 0;
 
             player.position.x = 30;
-            player.position.y =gameHeight/2;
-            player.xspeed=0;
-            player.yspeed=0;
+            player.position.y = gameHeight / 2;
+            player.xspeed = 0;
+            player.yspeed = 0;
 
         }
 
@@ -411,22 +408,7 @@ class Ball {
             this.yspeed = -this.yspeed;
 
         }
-        /*if (this.y > (gameHeight - this.width) || this.y < this.width) {
 
-            // Stop puck from getting stuck
-            if (this.position.y > (gameHeight - this.width)) {
-                this.position.y = gameHeight - this.width;
-            } else {
-                this.position.y = this.width;
-            }
-
-            // Reverse direction
-            this.yspeed = -this.yspeed;
-        }*/
-
-
-        // this.position.x = this.randomNumX
-        // this.position.y = this.randomNumY
         this.checkCollision(player);
         this.checkCollision(player2);
     }
@@ -450,7 +432,7 @@ function drawCircle(ct) {
 
     ct.arc(400, 300, 50, 0, 2 * Math.PI);
 
-    // ct.fillRect(this.position.x,this.position.y,this.width,this.height);
+   
     ct.strokeStyle = 'purple';
 
     ct.stroke();
@@ -463,26 +445,20 @@ function drawHalfCircle(ct, x, y, start, end) {
     ct.stroke();
 }
 
-function drawScoreBoard(ct){
+function drawScoreBoard(ct) {
     ct.font = "16px Arial";
     ct.fillStyle = "#0095DD";
-    ct.fillText("Score: "+count2, 8, 20);
-    ct.fillText("Score: "+count1, 730, 20);
+    ct.fillText("Score: " + count2, 8, 20);
+    ct.fillText("Score: " + count1, 730, 20);
 }
 
-function ballMove(ball) {
-
-    ball.move();
-
-
-}
 
 let player = new Player(gameWidth, gameHeight)
 let player2 = new Player2(gameWidth, gameHeight)
 let ball = new Ball(gameWidth, gameHeight)
 new KeyInput(player)
 new KeyInput2(player2)
-//ballMove(ball);
+
 
 function drawStart(ct) {
     drawLine(ct);
@@ -507,8 +483,8 @@ function gameLoop(passedTime) {
     ct.clearRect(0, 0, 800, 600);
     player.update(deltatime);
     player2.update(deltatime);
-    ball.update(deltatime, player,player2);
-    ball.update(deltatime,player,player2);
+    ball.update(deltatime, player, player2);
+    ball.update(deltatime, player, player2);
 
     drawLine(ct);
     drawCircle(ct);
@@ -522,9 +498,6 @@ function gameLoop(passedTime) {
 
 }
 gameLoop();
-var countCheck1=0;
-var countCheck2=0;
-
 
 
 
